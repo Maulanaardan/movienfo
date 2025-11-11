@@ -1,5 +1,4 @@
-@import 'tailwindcss';
-
+@import "tailwindcss";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -9,3 +8,158 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: #000;
+}
+
+.movie-banner {
+  position: relative;
+  height: 100vh;
+  background: url('superman.jpg') right center/cover no-repeat; /* ganti gambar lu */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 80px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.2), transparent);
+  z-index: 1;
+}
+
+.movie-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.tags span {
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 8px;
+  font-size: 14px;
+  backdrop-filter: blur(4px);
+}
+
+h1 {
+  font-size: 64px;
+  margin: 20px 0 10px;
+  letter-spacing: 4px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+.trailer {
+  margin-right: 10px;
+  background: rgba(255,255,255,0.15);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: #000;
+}
+
+.movie-banner {
+  position: relative;
+  height: 100vh;
+  background: url('/image/poster.jpeg') right center/cover no-repeat; /* ganti gambar lu */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 80px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.2), transparent);
+  z-index: 1;
+}
+
+.movie-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.tags span {
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 8px;
+  font-size: 14px;
+  backdrop-filter: blur(4px);
+}
+
+h1 {
+  font-size: 64px;
+  margin: 20px 0 10px;
+  letter-spacing: 4px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+.trailer {
+  margin-right: 10px;
+  background: rgba(255,255,255,0.15);
+}
+
