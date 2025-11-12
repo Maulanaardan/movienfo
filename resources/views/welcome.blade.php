@@ -64,10 +64,40 @@
           </div>
         </div>
       </section>
+      
+<section class="py-12 px-8 md:px-24 text-white">
+  <div class="flex flex-wrap justify-center gap-6">
+    
+    <!-- IMDb -->
+    <a href="https://www.imdb.com/title/tt0078346/" target="_blank" 
+       class="relative px-6 py-4 rounded-xl text-center w-36 shadow-md overflow-hidden group">
+      <p class="font-semibold text-sm text-gray-400">IMDb</p>
+      <p class="text-3xl font-bold mt-1">7.6</p>
+      <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-1/2"></span>
+    </a>
 
-  <section class="bg-gray-950 py-20 px-8 md:px-24 text-white">
-  <div class="text-center mb-12">
-    <h2 class="text-4xl font-bold">Cast</h2>
+    <!-- Rotten Tomatoes -->
+    <a href="https://www.rottentomatoes.com/" target="_blank" 
+       class="relative px-6 py-4 rounded-xl text-center w-36 shadow-md overflow-hidden group">
+      <p class="font-semibold text-sm text-gray-400">Rotten</p>
+      <p class="text-3xl font-bold mt-1">84%</p>
+      <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-1/2"></span>
+    </a>
+
+    <!-- Metacritic -->
+    <a href="https://www.metacritic.com/" target="_blank" 
+       class="relative px-6 py-4 rounded-xl text-center w-36 shadow-md overflow-hidden group">
+      <p class="font-semibold text-sm text-gray-400">Metacritic</p>
+      <p class="text-3xl font-bold mt-1">72</p>
+      <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-1/2"></span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="bg-black py-20 px-8 md:px-24 text-white">
+    <div class="text-center mb-12">
+    <h2 class="text-4xl font-bold mb-4">Cast</h2>
   </div>
 
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 justify-items-center">
@@ -127,14 +157,66 @@
 </section>
 
 
-<section class="bg-gray-950 text-white py-20 px-8 md:px-24">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-3xl md:text-5xl font-bold mb-6 tracking-wide text-center">Storyline / Synopsis</h2>
-    <p class="text-gray-300 leading-relaxed text-lg">
-      In a world where humanity’s survival depends on hope, a young hero embarks on an unforgettable journey 
-      to uncover the truth behind a mysterious power that could save — or destroy — everything.  
-      As allies turn into enemies and secrets unfold, fate brings them to the edge of destiny.
+<section class="relative bg-black py-20 px-8 md:px-24 text-white">
+  <div class="absolute inset-0 bg-[#222831]/100"></div>
+  <div class="max-w-3xl mx-auto relative z-10">
+    <h2 class="text-4xl font-bold mb-4 text-center">Storyline</h2>
+    <p>
+      Dalam dunia yang terbelah antara harapan dan ketakutan, <strong>Clark Kent</strong> berjuang untuk menemukan tempatnya.
+      Dilahirkan sebagai <strong>Kal-El</strong> di planet Krypton yang hancur, ia dikirim ke Bumi dan dibesarkan oleh keluarga Kent yang penuh kasih.
     </p>
+    <br>
+    <p>
+      Namun, kekuatan luar biasa yang ia miliki membuatnya selalu merasa berbeda. Ketika ancaman baru datang dari luar angkasa dan dunia mulai kehilangan kepercayaan pada pahlawan, Clark harus menentukan apakah ia akan tetap bersembunyi di balik identitasnya sebagai jurnalis, atau berdiri sebagai <strong>Superman</strong>, simbol terakhir dari harapan umat manusia.
+    </p>
+    <br>
+    <p>
+      Dalam pertarungan antara tanggung jawab dan kemanusiaan, hanya satu hal yang bisa menyelamatkan dunia: <strong>iman kepada kebaikan.</strong>
+    </p>
+  </div>
+  </div>
+</section>
+
+<section class="bg-black py-20 px-8 md:px-24 text-white">
+  <div class="text-center mb-12">
+    <h2 class="text-4xl font-bold mb-4">Trailer</h2>
+    <p class="text-gray-400">Tonton cuplikan resmi filmnya di bawah ini</p>
+  </div>
+
+  <div class="flex justify-center">
+    <div class="w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+      <!-- Ganti link YouTube di bawah ini -->
+      <iframe 
+        class="w-full h-full"
+        src="https://www.youtube.com/embed/ErWfGyLp5h8?si=3VEpWuAhQHpPQUQZ" 
+        title="Movie Trailer"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6  pt-20">
+    <!-- Gambar 1 -->
+    <div class="overflow-hidden rounded-xl shadow-lg">
+      <img src="{{ asset('image/poster.jpeg') }}" alt="Scene 1" class="rounded-xl object-cover" />
+    </div>
+
+   <!-- Gambar 1 -->
+    <div class="overflow-hidden rounded-xl shadow-lg">
+      <img src="{{ asset('image/poster.jpeg') }}" alt="Scene 1" class="rounded-xl object-cover" />
+    </div>
+
+    <!-- Gambar 1 -->
+    <div class="overflow-hidden rounded-xl shadow-lg">
+      <img src="{{ asset('image/poster.jpeg') }}" alt="Scene 1" class="rounded-xl object-cover" />
+    </div>
+
+    <!-- Gambar 1 -->
+    <div class="overflow-hidden rounded-xl shadow-lg">
+      <img src="{{ asset('image/poster.jpeg') }}" alt="Scene 1" class="rounded-xl object-cover" />
+    </div>
   </div>
 </section>
 
