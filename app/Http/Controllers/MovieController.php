@@ -7,27 +7,42 @@ use App\Models\movie;
 
 class MovieController
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $limit = (int) $request->query("limit", 5);
         $limit = $limit > 0 ? min(100, $limit) : 5;
-        
+
         $search = $request->query("search");
+        $sort   = $request->query("sort", "latest");
 
         $query = movie::with('genre');
 
-        // FILTER SEARCH
+        // SEARCH
         if ($search) {
             $query->where(function($q) use ($search) {
                 $q->where('title', 'LIKE', "%{$search}%")
-                ->orWhere('description', 'LIKE', "%{$search}%");
+                  ->orWhere('description', 'LIKE', "%{$search}%");
             });
         }
 
-        // BARU paginate
+        // SORTING
+        switch ($sort) {
+            case 'oldest':
+                $query->orderBy('release_year', 'asc');
+                break;
+
+            case 'title_asc':
+                $query->orderBy('title', 'asc');
+                break;
+
+            case 'title_desc':
+                $query->orderBy('title', 'desc');
+                break;
+
+            default: // latest
+                $query->orderBy('release_year', 'desc');
+        }
+
         $movies = $query->paginate($limit)->appends($request->query());
 
         return response()->json([
@@ -35,66 +50,59 @@ class MovieController
             'data'    => $movies->items(),
             'meta'    => [
                 'current_page' => $movies->currentPage(),
-                'per_page' => $movies->perPage(),
-                'total' => $movies->total(),
-                'last_page' => $movies->lastPage(),
-            ]
+                'per_page'     => $movies->perPage(),
+                'total'        => $movies->total(),
+                'last_page'    => $movies->lastPage(),
+            ],
         ]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $data = $request->validate(
-            ["title" => "required"],
-            ["author" => "required"],
-            ["writer" => "required"],
-            ["description" => "required"],
-            ["duration" => "required"],
-            ["release_year" => "required"],
-            ["poster_url" => "required"],
-        );
+        $data = $request->validate([
+            "title"        => "required",
+            "author"       => "required",
+            "writer"       => "required",
+            "description"  => "required",
+            "duration"     => "required",
+            "release_year" => "required",
+            "poster_url"   => "required",
+        ]);
+
         $movie = movie::create($data);
         return response()->json($movie, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-    public function show(movie $movie)
+    public function show($id)
     {
-        return response()->json($movie::all());
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $data = $request->validate(
-            ["title" => "required"],
-            ["author" => "required"],
-            ["writer" => "required"],
-            ["description" => "required"],
-            ["duration" => "required"],
-            ["release_year" => "required"],
-            ["poster_url" => "required"],
-        );
-        $movie = movie::findOrFail();
-        $movie = movie::update($data);
+        $movie = movie::with('genre')->findOrFail($id);
         return response()->json($movie);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(genre $genre)
+    public function update(Request $request, $id)
     {
-        $movie::delete();
-        return response()->json(["message" => "data dihapus"]);
+        $movie = movie::findOrFail($id);
+
+        $data = $request->validate([
+            "title"        => "required",
+            "author"       => "required",
+            "writer"       => "required",
+            "description"  => "required",
+            "duration"     => "required",
+            "release_year" => "required",
+            "poster_url"   => "required",
+        ]);
+
+        $movie->update($data);
+
+        return response()->json($movie);
+    }
+
+    public function destroy($id)
+    {
+        $movie = movie::findOrFail($id);
+        $movie->delete();
+
+        return response()->json(["message" => "movie deleted"]);
     }
 }
