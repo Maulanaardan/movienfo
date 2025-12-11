@@ -10,10 +10,38 @@ class MovieController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(movie::all());
+        $limit = (int) $request->query("limit", 5);
+        $limit = $limit > 0 ? min(100, $limit) : 5;
+        
+        $search = $request->query("search");
+
+        $query = movie::with('genre');
+
+        // FILTER SEARCH
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // BARU paginate
+        $movies = $query->paginate($limit)->appends($request->query());
+
+        return response()->json([
+            'success' => true,
+            'data'    => $movies->items(),
+            'meta'    => [
+                'current_page' => $movies->currentPage(),
+                'per_page' => $movies->perPage(),
+                'total' => $movies->total(),
+                'last_page' => $movies->lastPage(),
+            ]
+        ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
