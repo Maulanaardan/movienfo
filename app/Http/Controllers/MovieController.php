@@ -19,10 +19,10 @@ class MovieController
 
         // SEARCH
         if ($search) {
-            $query->where(function($q) use ($search) {
-                $q->where('title', 'LIKE', "%{$search}%")
-                  ->orWhere('description', 'LIKE', "%{$search}%");
-            });
+                $query->whereRaw(
+                    "MATCH(title, description) AGAINST(? IN BOOLEAN MODE)",
+                    [$search . '*']
+                );
         }
 
         // SORTING
